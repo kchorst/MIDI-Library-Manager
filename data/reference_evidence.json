@@ -1,0 +1,20 @@
+{
+  "format": "MIDI Remixer supplemental reference evidence",
+  "version": 1,
+  "notice": "Metadata only. Providers are discovery inputs, never authorities over the user's MIDI files. No live scraping is performed.",
+  "provider": "MIDI Remixer curated supplemental evidence",
+  "external_candidates": [
+    {
+      "provider": "User-confirmed MIDI Remixer session",
+      "evidence_type": "user-confirmed interesting result",
+      "anchor_artist": "Steve Miller Band",
+      "anchor_title": "Abracadabra",
+      "candidate_artist": "",
+      "candidate_title": "Jewish Klezmer Music frailach",
+      "relationship_tags": ["cross-style", "user-confirmed", "experimental"],
+      "confidence": 72,
+      "note": "The user reported that an earlier generated Trial was interesting; this is experience evidence, not proof for every arrangement."
+    }
+  ],
+  "song_popularity": []
+}

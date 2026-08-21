@@ -1,0 +1,86 @@
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Build / packaging output
+build/
+dist/
+*.egg-info/
+*.whl
+*.tar.gz
+*.zip
+
+# Local Library / suite runtime state
+user-data/
+config/
+cache/
+logs/
+backups/
+qa-backups/
+quarantine/
+pending-delete/
+working_sessions/
+.midi-remixer-portable
+*.sqlite
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.sqlite3-journal
+*.db
+*.db-wal
+*.db-shm
+
+# Qualification, tests, harnesses, and transient evidence
+WINDOWS_QUALIFICATION_RESULT*.txt
+qualification-results/
+qualification_results/
+qualification-*.txt
+*qualification-result*.json
+*qualification-result*.txt
+tests/
+engineering/
+pytest.ini
+*_selfcheck.py
+*_acceptance.py
+*.log
+*.tmp
+*.temp
+*.partial
+*.bak
+*.old
+*.orig
+
+# Local audio dependencies / user-selected media
+assets/soundfonts/*.sf2
+assets/soundfonts/*.sf3
+vendor/fluidsynth/*.exe
+vendor/fluidsynth/*.dll
+vendor/ffmpeg/*.exe
+*.wav
+*.mp3
+*.ogg
+*.flac
+
+# IDE / editor / OS noise
+.vscode/
+.idea/
+*.code-workspace
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*

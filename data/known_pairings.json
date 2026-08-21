@@ -1,0 +1,400 @@
+{
+  "format": "MIDI Remixer documented pairing references",
+  "version": 2,
+  "notice": "Metadata only. No MIDI or audio is included. A documented pairing is a creative precedent, not a compatibility guarantee for the user's MIDI arrangements.",
+  "provider": "Curated human-created mashup archives",
+  "pairings": [
+    {
+      "mashup_artist": "Lobsterdust",
+      "mashup_title": "Stayin' Hot",
+      "sources": [
+        {"artist": "Nelly", "title": "Hot in Herre"},
+        {"artist": "Bee Gees", "title": "Stayin' Alive"}
+      ],
+      "relationship_tags": ["cross-style", "groove bridge", "recognizable hook"],
+      "provider": "Lobsterdust",
+      "source_url": "https://lobsterdust.bandcamp.com/track/stayin-hot"
+    },
+    {
+      "mashup_artist": "Lobsterdust",
+      "mashup_title": "Skyline Operator",
+      "sources": [
+        {"artist": "The Notorious B.I.G.", "title": "Sky's the Limit"},
+        {"artist": "The The", "title": "Helpline Operator"}
+      ],
+      "relationship_tags": ["cross-style", "vocal over accompaniment"],
+      "provider": "Lobsterdust",
+      "source_url": "https://lobsterdust.bandcamp.com/track/skyline-operator"
+    },
+    {
+      "mashup_artist": "Lobsterdust",
+      "mashup_title": "Ridin' Dirty in Chicago",
+      "sources": [
+        {"artist": "Chamillionaire", "title": "Ridin'"},
+        {"artist": "Chicago", "title": "Street Player"}
+      ],
+      "relationship_tags": ["cross-era", "horn/groove bridge"],
+      "provider": "Lobsterdust",
+      "source_url": "https://lobsterdust.bandcamp.com/"
+    },
+    {
+      "mashup_artist": "Lobsterdust",
+      "mashup_title": "Bleeding in Hollywood",
+      "sources": [
+        {"artist": "Post Malone", "title": "Hollywood's Bleeding"},
+        {"artist": "System of a Down", "title": "Aerials"}
+      ],
+      "relationship_tags": ["cross-style", "rock transformation"],
+      "provider": "Bootie Mashup Top 10",
+      "source_url": "https://bootiemashup.com/top-ten-albums/bootie-mashup-top-10-march-2024/"
+    },
+    {
+      "mashup_artist": "DJ Tripp",
+      "mashup_title": "Hold Me Up, Texas",
+      "sources": [
+        {"artist": "Beyoncé", "title": "Texas Hold 'Em"},
+        {"artist": "Avicii", "title": "Wake Me Up"}
+      ],
+      "relationship_tags": ["cross-style", "shared pulse", "country/dance"],
+      "provider": "Best of Bootie Mashup 2024",
+      "source_url": "https://bootiemashup.com/best-of-bootie/2024/"
+    },
+    {
+      "mashup_artist": "Mo27Da",
+      "mashup_title": "Lovefool Invincible Espresso",
+      "sources": [
+        {"artist": "Sabrina Carpenter", "title": "Espresso"},
+        {"artist": "The Cardigans", "title": "Lovefool"},
+        {"artist": "Steff Da Campo & Robbie Mendez", "title": "Invincible"}
+      ],
+      "relationship_tags": ["multi-source", "cross-era", "hook collage"],
+      "provider": "Best of Bootie Mashup 2024",
+      "source_url": "https://bootiemashup.com/best-of-bootie/2024/"
+    },
+    {
+      "mashup_artist": "DJs From Mars",
+      "mashup_title": "We Can't Be Friends Sweet Disposition",
+      "sources": [
+        {"artist": "Ariana Grande", "title": "we can't be friends (wait for your love)"},
+        {"artist": "The Temper Trap", "title": "Sweet Disposition"}
+      ],
+      "relationship_tags": ["cross-era", "pop/dance", "anthemic backing"],
+      "provider": "Best of Bootie Mashup 2024",
+      "source_url": "https://bootiemashup.com/best-of-bootie/2024/"
+    },
+    {
+      "mashup_artist": "Steve Smooth",
+      "mashup_title": "Hot To Go Y.M.C.A.",
+      "sources": [
+        {"artist": "Chappell Roan", "title": "HOT TO GO!"},
+        {"artist": "Village People", "title": "Y.M.C.A."}
+      ],
+      "relationship_tags": ["dance", "call-and-response", "cross-era"],
+      "provider": "Best of Bootie Mashup 2024",
+      "source_url": "https://bootiemashup.com/best-of-bootie/2024/"
+    },
+    {
+      "mashup_artist": "DJ Firth",
+      "mashup_title": "I Had Some Help With All The Small Things",
+      "sources": [
+        {"artist": "Post Malone & Morgan Wallen", "title": "I Had Some Help"},
+        {"artist": "blink-182", "title": "All the Small Things"}
+      ],
+      "relationship_tags": ["country/pop-punk", "cross-era", "shared energy"],
+      "provider": "Best of Bootie Mashup 2024",
+      "source_url": "https://bootiemashup.com/best-of-bootie/2024/"
+    },
+    {
+      "mashup_artist": "HallMighty",
+      "mashup_title": "Dance, Dance The Night",
+      "sources": [
+        {"artist": "Fall Out Boy", "title": "Dance, Dance"},
+        {"artist": "Dua Lipa", "title": "Dance the Night"}
+      ],
+      "relationship_tags": ["rock/pop", "dance pulse", "cross-style"],
+      "provider": "Best of Bootie Mashup 2023",
+      "source_url": "https://bootiemashup.com/best-of-bootie/2023/"
+    },
+    {
+      "mashup_artist": "oki",
+      "mashup_title": "Guerilla Voulez Vous",
+      "sources": [
+        {"artist": "ABBA", "title": "Voulez-Vous"},
+        {"artist": "Rage Against the Machine", "title": "Guerrilla Radio"}
+      ],
+      "relationship_tags": ["disco/rock", "cross-style", "strong contrast"],
+      "provider": "Best of Bootie Mashup 2023",
+      "source_url": "https://bootiemashup.com/best-of-bootie/2023/"
+    },
+    {
+      "mashup_artist": "DJ Firth",
+      "mashup_title": "Born Slippy Flowers",
+      "sources": [
+        {"artist": "Miley Cyrus", "title": "Flowers"},
+        {"artist": "Underworld", "title": "Born Slippy .NUXX"}
+      ],
+      "relationship_tags": ["pop/electronic", "dance transformation", "cross-era"],
+      "provider": "Best of Bootie Mashup 2023",
+      "source_url": "https://bootiemashup.com/best-of-bootie/2023/"
+    },
+    {
+      "mashup_artist": "DJ J-Brew",
+      "mashup_title": "Cruel Summertime",
+      "sources": [
+        {"artist": "Taylor Swift", "title": "Cruel Summer"},
+        {"artist": "Semisonic", "title": "Closing Time"}
+      ],
+      "relationship_tags": ["pop/rock", "cross-era", "vocal-over-band"],
+      "provider": "Best of Bootie Mashup 2023",
+      "source_url": "https://bootiemashup.com/best-of-bootie/2023/"
+    },
+    {
+      "mashup_artist": "Adriana A",
+      "mashup_title": "I Keep Forgettin' You Got A Fast Car",
+      "sources": [
+        {"artist": "Luke Combs", "title": "Fast Car"},
+        {"artist": "Michael McDonald", "title": "I Keep Forgettin' (Every Time You're Near)"}
+      ],
+      "relationship_tags": ["cross-era", "soul/country", "vocal phrasing"],
+      "provider": "Best of Bootie Mashup 2023",
+      "source_url": "https://bootiemashup.com/best-of-bootie/2023/"
+    },
+    {
+      "mashup_artist": "Adriana A",
+      "mashup_title": "My Own Worst Anti-Hero",
+      "sources": [
+        {"artist": "Taylor Swift", "title": "Anti-Hero"},
+        {"artist": "Lit", "title": "My Own Worst Enemy"}
+      ],
+      "relationship_tags": ["pop/rock", "cross-era", "hook bridge"],
+      "provider": "Best of Bootie Mashup 2022",
+      "source_url": "https://bootiemashup.com/best-of-bootie-mashup-2022/"
+    },
+    {
+      "mashup_artist": "DJ Cummerbund",
+      "mashup_title": "About The Damn End",
+      "sources": [
+        {"artist": "Lizzo", "title": "About Damn Time"},
+        {"artist": "Linkin Park", "title": "In the End"}
+      ],
+      "relationship_tags": ["pop/rock", "cross-style", "recognizable hook"],
+      "provider": "Best of Bootie Mashup 2022",
+      "source_url": "https://bootiemashup.com/best-of-bootie-mashup-2022/"
+    },
+    {
+      "mashup_artist": "iWillBattle",
+      "mashup_title": "Summer Up That Hill",
+      "sources": [
+        {"artist": "Kate Bush", "title": "Running Up That Hill (A Deal with God)"},
+        {"artist": "Demi Lovato", "title": "Cool for the Summer"}
+      ],
+      "relationship_tags": ["cross-era", "pop/rock", "dramatic build"],
+      "provider": "Best of Bootie Mashup 2022",
+      "source_url": "https://bootiemashup.com/best-of-bootie-mashup-2022/"
+    },
+    {
+      "mashup_artist": "Girl Talk",
+      "mashup_title": "Break My Lights",
+      "sources": [
+        {"artist": "Beyoncé", "title": "Break My Soul"},
+        {"artist": "Ellie Goulding", "title": "Lights"}
+      ],
+      "relationship_tags": ["pop/dance", "shared pulse", "vocal layering"],
+      "provider": "Best of Bootie Mashup 2022",
+      "source_url": "https://bootiemashup.com/best-of-bootie-mashup-2022/"
+    },
+    {
+      "mashup_artist": "Mo27Da",
+      "mashup_title": "Easy On Baba O'Riley",
+      "sources": [
+        {"artist": "Adele", "title": "Easy on Me"},
+        {"artist": "The Who", "title": "Baba O'Riley"}
+      ],
+      "relationship_tags": ["ballad/rock", "cross-era", "anthemic backing"],
+      "provider": "Best of Bootie Mashup 2022",
+      "source_url": "https://bootiemashup.com/best-of-bootie-mashup-2022/"
+    },
+    {
+      "mashup_artist": "DJ Giac",
+      "mashup_title": "Take It As It Was",
+      "sources": [
+        {"artist": "Harry Styles", "title": "As It Was"},
+        {"artist": "a-ha", "title": "Take on Me"}
+      ],
+      "relationship_tags": ["synth-pop", "cross-era", "melodic bridge"],
+      "provider": "Best of Bootie Mashup 2022",
+      "source_url": "https://bootiemashup.com/best-of-bootie-mashup-2022/"
+    },
+    {
+      "mashup_artist": "Sickick",
+      "mashup_title": "I Can Feel It",
+      "sources": [
+        {"artist": "The Jacksons", "title": "Can You Feel It"},
+        {"artist": "Phil Collins", "title": "In the Air Tonight"}
+      ],
+      "relationship_tags": ["cross-era", "dramatic groove", "recognizable hook"],
+      "provider": "Best of Bootie Mashup 2022",
+      "source_url": "https://bootiemashup.com/best-of-bootie-mashup-2022/"
+    },
+    {
+      "mashup_artist": "DJ ShyBoy",
+      "mashup_title": "Old Town Brain Stew",
+      "sources": [
+        {"artist": "Lil Nas X feat. Billy Ray Cyrus", "title": "Old Town Road"},
+        {"artist": "Green Day", "title": "Brain Stew"}
+      ],
+      "relationship_tags": ["country/rock", "cross-style", "riff bridge"],
+      "provider": "Best of Bootie Mashup 2019",
+      "source_url": "https://bootiemashup.com/best-of-bootie/bestofbootiemashup2019/"
+    },
+    {
+      "mashup_artist": "jimmylin",
+      "mashup_title": "Toxic Bad Guy, Look What You Made Me Do",
+      "sources": [
+        {"artist": "Billie Eilish", "title": "bad guy"},
+        {"artist": "Taylor Swift", "title": "Look What You Made Me Do"},
+        {"artist": "Britney Spears", "title": "Toxic"}
+      ],
+      "relationship_tags": ["multi-source", "pop", "dark groove"],
+      "provider": "Best of Bootie Mashup 2019",
+      "source_url": "https://bootiemashup.com/best-of-bootie/bestofbootiemashup2019/"
+    },
+    {
+      "mashup_artist": "Adrian A",
+      "mashup_title": "Truth Hurts One More Time",
+      "sources": [
+        {"artist": "Lizzo", "title": "Truth Hurts"},
+        {"artist": "Britney Spears", "title": "...Baby One More Time"}
+      ],
+      "relationship_tags": ["pop", "cross-era", "vocal hook"],
+      "provider": "Best of Bootie Mashup 2019",
+      "source_url": "https://bootiemashup.com/best-of-bootie/bestofbootiemashup2019/"
+    },
+    {
+      "mashup_artist": "ZooKreeper",
+      "mashup_title": "Cut to Africa",
+      "sources": [
+        {"artist": "Carly Rae Jepsen", "title": "Cut to the Feeling"},
+        {"artist": "Toto", "title": "Africa"}
+      ],
+      "relationship_tags": ["pop/rock", "cross-era", "anthemic"],
+      "provider": "Best of Bootie Mashup 2019",
+      "source_url": "https://bootiemashup.com/best-of-bootie/bestofbootiemashup2019/"
+    },
+    {
+      "mashup_artist": "AnDy Wu",
+      "mashup_title": "Crazy In 7 Rings",
+      "sources": [
+        {"artist": "Ariana Grande", "title": "7 rings"},
+        {"artist": "Beyoncé", "title": "Crazy in Love"}
+      ],
+      "relationship_tags": ["pop/R&B", "cross-era", "groove bridge"],
+      "provider": "Best of Bootie Mashup 2019",
+      "source_url": "https://bootiemashup.com/best-of-bootie/bestofbootiemashup2019/"
+    },
+    {
+      "mashup_artist": "Lobsterdust",
+      "mashup_title": "Whole Lotta Extra Dougie",
+      "sources": [
+        {"artist": "Cali Swag District", "title": "Teach Me How to Dougie"},
+        {"artist": "Led Zeppelin", "title": "Whole Lotta Love"},
+        {"artist": "Katy Perry", "title": "E.T."}
+      ],
+      "relationship_tags": ["multi-source", "hip-hop/rock/pop", "riff bridge"],
+      "provider": "Best of Bootie 2011",
+      "source_url": "https://bootiemashup.com/best-of-bootie/best-of-bootie-2011/"
+    },
+    {
+      "mashup_artist": "DJ Schmolli",
+      "mashup_title": "Smells Like Jealousy",
+      "sources": [
+        {"artist": "Chromeo", "title": "Jealous (I Ain't with It)"},
+        {"artist": "Nirvana", "title": "Smells Like Teen Spirit"}
+      ],
+      "relationship_tags": ["funk/rock", "cross-style", "riff transformation"],
+      "provider": "Mash-Up Your Bootz Best of 2014",
+      "source_url": "https://mashupyourbootz.blogspot.com/2014/12/mash-up-your-bootz-party-best-of-2014.html"
+    },
+    {
+      "mashup_artist": "DJ Bigg H",
+      "mashup_title": "Sweet Home Atlanta",
+      "sources": [
+        {"artist": "Lynyrd Skynyrd", "title": "Sweet Home Alabama"},
+        {"artist": "Outkast", "title": "Hey Ya!"}
+      ],
+      "relationship_tags": ["southern rock/hip-hop", "cross-style", "regional theme"],
+      "provider": "Mash-Up Your Bootz Party Sampler Vol. 100",
+      "source_url": "https://mashupyourbootz.blogspot.com/2015/09/mash-up-your-bootz-party-sampler-vol-100-the-future.html"
+    },
+    {
+      "mashup_artist": "Voicedude",
+      "mashup_title": "Black Or White Prison",
+      "sources": [
+        {"artist": "Michael Jackson", "title": "Black or White"},
+        {"artist": "Johnny Cash", "title": "Folsom Prison Blues"}
+      ],
+      "relationship_tags": ["pop/country", "cross-era", "riff bridge"],
+      "provider": "Mash-Up Your Bootz Party Sampler Vol. 70",
+      "source_url": "https://mashupyourbootz.blogspot.com/2013/03/mash-up-your-bootz-party-sampler-vol-70.html"
+    },
+    {
+      "mashup_artist": "pomDeter",
+      "mashup_title": "Call Me A Hole",
+      "sources": [
+        {"artist": "Carly Rae Jepsen", "title": "Call Me Maybe"},
+        {"artist": "Nine Inch Nails", "title": "Head Like a Hole"}
+      ],
+      "relationship_tags": ["pop/industrial rock", "cross-style", "vocal-over-riff"],
+      "provider": "Mash-Up Your Bootz Party Sampler Vol. 70",
+      "source_url": "https://mashupyourbootz.blogspot.com/2013/03/mash-up-your-bootz-party-sampler-vol-70.html"
+    },
+    {
+      "mashup_artist": "Kill_mR_DJ",
+      "mashup_title": "Best FourFive Seconds Of My Life",
+      "sources": [
+        {"artist": "American Authors", "title": "Best Day of My Life"},
+        {"artist": "Rihanna, Kanye West & Paul McCartney", "title": "FourFiveSeconds"}
+      ],
+      "relationship_tags": ["pop/folk-pop", "shared pulse", "cross-style"],
+      "provider": "Mash-Up Your Bootz Party Sampler Vol. 97",
+      "source_url": "https://mashupyourbootz.blogspot.com/2015/06/mash-up-your-bootz-party-sampler-vol-97.html"
+    },
+    {
+      "mashup_artist": "MixmstrStel",
+      "mashup_title": "Century-Old Habit",
+      "sources": [
+        {"artist": "Fall Out Boy", "title": "Centuries"},
+        {"artist": "Linkin Park", "title": "Breaking the Habit"}
+      ],
+      "relationship_tags": ["rock", "cross-era", "dramatic hook"],
+      "provider": "Mash-Up Your Bootz Party Sampler Vol. 97",
+      "source_url": "https://mashupyourbootz.blogspot.com/2015/06/mash-up-your-bootz-party-sampler-vol-97.html"
+    }
+  ],
+  "jazz_relationships": [
+    {
+      "relationship": "contrafact",
+      "source_title": "How High the Moon",
+      "related_title": "Ornithology",
+      "progression_family": "How High the Moon changes",
+      "provider": "Jazz relationship reference",
+      "source_url": "https://www.jazzadvice.com/lessons/jazz-contrafacts-and-reharmonization-a-creative-approach-to-jazz-standards/"
+    },
+    {
+      "relationship": "contrafact",
+      "source_title": "I Got Rhythm",
+      "related_title": "52nd Street Theme",
+      "progression_family": "Rhythm changes",
+      "provider": "Jazz relationship reference",
+      "source_url": "https://en.wikipedia.org/wiki/List_of_jazz_contrafacts"
+    },
+    {
+      "relationship": "progression family",
+      "source_title": "I Got Rhythm",
+      "related_title": "Rhythm changes standards",
+      "progression_family": "Rhythm changes / 32-bar AABA",
+      "provider": "Jazz relationship reference",
+      "source_url": "https://en.wikipedia.org/wiki/Rhythm_changes"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+APP_NAME = "MIDI Remixer"
+APP_VERSION = "0.30.0"
+RELEASE_CHANNEL = "Split Library Architecture RC"
+APP_VERSION_DISPLAY = f"{APP_VERSION} {RELEASE_CHANNEL}"
+TAGLINE = "Discover, audition, arrange, refine, perform, compare, and deliver MIDI songs"

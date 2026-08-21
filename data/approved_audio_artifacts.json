@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "policy": "No network artifact is installed unless this release pins an immutable URL and SHA-256 digest.",
+  "fluidsynth_windows_x64": null,
+  "recommended_soundfont": null
+}
