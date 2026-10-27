@@ -100,7 +100,15 @@ def open_midi_file(
         opener = startfile or getattr(os, "startfile", None)
         if opener is None:
             raise OSError("Windows file-association launcher is unavailable")
-        opener(str(source))
+        try:
+            opener(str(source))
+        except OSError:
+            popen(
+                ["rundll32.exe", "shell32.dll,OpenAs_RunDLL", str(source)],
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
     elif platform_name == "darwin":
         popen(["open", str(source)], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     else:

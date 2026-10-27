@@ -47,6 +47,8 @@ class _UnionFind:
             self.rank[value] = 0
 
     def find(self, value: str) -> str:
+        if value not in self.parent:
+            self.add(value)
         parent = self.parent[value]
         if parent != value:
             self.parent[value] = self.find(parent)
