@@ -1,4 +1,4 @@
-# MIDI Library Manager v0.39.3
+# MIDI Library Manager v0.39.4
 
 MIDI Library Manager is the authoritative persistent catalogue, analysis, review, playback, and preparation application for the MIDI Performer product system. It is designed for large MIDI collections and preserves completed Fast Scan, Deep Analysis, lifecycle, composition-family, and Remix Eligibility work across restarts.
 
@@ -12,7 +12,7 @@ If you also install MIDI Remixer, Remixer attaches to this same authoritative Li
 
 | Item | Release value |
 | --- | --- |
-| MIDI Library Manager | **v0.39.3** |
+| MIDI Library Manager | **v0.39.4** |
 | Matched MIDI Remixer | **v0.34.10** |
 | Library Engine | **0.36.3** |
 | Library Contract | **4** |
@@ -20,6 +20,16 @@ If you also install MIDI Remixer, Remixer attaches to this same authoritative Li
 | Supported OS | **Windows 10/11, 64-bit** |
 | Supported Python | **3.11, 3.12, or 3.13, 64-bit** |
 | License | **PolyForm Noncommercial 1.0.0** |
+
+## v0.39.4 safety update
+
+This release strengthens data preservation during restore and scanning without changing the Library Engine contract, schema, or matched MIDI Remixer version.
+
+- **Restore rollback** protects the existing catalogue when replacement fails, including associated SQLite WAL/SHM files. If rollback itself cannot finish, displaced originals are retained for manual recovery.
+- **Incomplete scans** no longer remove saved catalogue entries when a directory or nested file cannot be read. The scan reports incomplete discovery and skips deletion reconciliation; resolve the access problem and run Fast Scan again.
+- **Backup verification** rejects archives with no Library database or inconsistent manifest/database inventories.
+
+Details: [v0.39.4 safety-fix notes](RELEASE_FIXES_v0.39.4.md). The changes passed 10 targeted regression tests; Windows GUI acceptance testing remains outstanding.
 
 ## Installation
 
@@ -75,7 +85,7 @@ Library owns scanning, migration, lifecycle/family/eligibility truth, quarantine
 
 ## Repository contents
 
-This public package intentionally contains only runtime/application source, required data/resources, launch/install files, documentation, dependency manifests, `.gitignore`, and license. Qualification harnesses, tests, test results, logs, caches, intermediate build files, and local user data are excluded.
+This public package intentionally contains only runtime/application source, required data/resources, launch/install files, documentation, dependency manifests, `.gitignore`, and license. The v0.39.4 release additionally includes a focused `tests/test_release_safety.py` regression suite. Other qualification harnesses, test results, logs, caches, intermediate build files, and local user data are excluded.
 
 ## License
 

@@ -1,4 +1,4 @@
-# MIDI Library Manager v0.39.3 — User Guide
+# MIDI Library Manager v0.39.4 — User Guide
 
 ## 1. What MIDI Library Manager is for
 
@@ -398,9 +398,13 @@ A Library backup can contain:
 
 Source MIDI files are **not** included.
 
+**v0.39.4 verification:** The backup must contain at least one Library SQLite database, and its declared manifest/database entries must agree. Backups missing a database or containing inconsistent inventories are rejected, not accepted as an empty successful restore. Keep the original backup and choose another known-good backup or create a fresh one from a working Library.
+
 ### Restore Library Data…
 
 Restore verifies the selected backup before replacing current Library state. A separate verified safety backup of the pre-restore Library is created first. When the Engine is running, the Engine creates that backup before stopping; when Engine startup has already failed, the Manager first proves no detached writer remains and creates the safety backup from the quiescent Library files. If that safety backup cannot be verified, restore does not replace anything. Restored SQLite databases are integrity-checked and the Manager then attempts to start the Engine.
+
+**v0.39.4 rollback protection:** If a database replacement fails, Library attempts to restore its original database and SQLite WAL/SHM sidecar files. If emergency rollback itself fails, originals are retained under the Library `restore-recovery` directory for diagnosis. Do not discard those recovered files: stop the Engine and preserve them before another restore attempt. The verified pre-restore safety backup is an additional recovery option.
 
 ### Updating the program folder
 
@@ -451,6 +455,8 @@ There are two different states:
 
 - **No active source configured** — the saved Library is an intentional offline snapshot. Use **Add Folder…** when you want filesystem reconciliation to resume.
 - **Configured source unavailable** — the saved path is still configured but Windows cannot currently access it (for example an offline/removable drive). Reconnect that drive/path, or remove/reconfigure the source deliberately. If several sources are configured, one offline root blocks whole-Library reconciliation; the Engine does not scan only the remaining roots and infer that the offline collection was deleted.
+
+If Fast Scan reports incomplete discovery, check permissions and accessibility of nested directories; destructive reconciliation is skipped for that pass.
 
 Do not rebuild simply because a source is temporarily unavailable. Saved committed catalogue data remains separate from source-folder availability. Browsing and saved review remain available; source-dependent scan/re-analysis/quarantine/delete operations wait for the relevant source, and global reconciliation/retry/rebuild waits for all configured roots.
 
