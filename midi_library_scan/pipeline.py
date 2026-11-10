@@ -105,6 +105,7 @@ class LibraryScanService:
         include_generated: bool = False,
         on_discovery: Callable[[int, Path], None] | None = None,
         inventory_out: dict[str, tuple[int, int]] | None = None,
+        traversal_errors_out: list[str] | None = None,
     ) -> list[Path]:
         """Discover MIDI paths with low filesystem overhead.
 
@@ -143,17 +144,23 @@ class LibraryScanService:
             source = Path(raw).expanduser()
             try:
                 source = source.resolve()
-            except OSError:
+            except OSError as exc:
+                if traversal_errors_out is not None:
+                    traversal_errors_out.append(f"{source}: {exc}")
                 continue
             if source.is_file():
                 if source.suffix.casefold() in MIDI_EXTENSIONS:
                     try:
                         source_stat = source.stat()
-                    except OSError:
+                    except OSError as exc:
+                        if traversal_errors_out is not None:
+                            traversal_errors_out.append(f"{source}: {exc}")
                         source_stat = None
                     publish(source, source_stat)
                 continue
             if not source.is_dir():
+                if traversal_errors_out is not None:
+                    traversal_errors_out.append(f"Unavailable scan root: {source}")
                 continue
 
             pending_dirs = [source]
@@ -178,7 +185,9 @@ class LibraryScanService:
                                     continue
                                 if not entry.is_file(follow_symlinks=True):
                                     continue
-                            except OSError:
+                            except OSError as exc:
+                                if traversal_errors_out is not None:
+                                    traversal_errors_out.append(f"{entry.path}: {exc}")
                                 continue
                             suffix = os.path.splitext(entry.name)[1].casefold()
                             if suffix not in MIDI_EXTENSIONS:
@@ -187,14 +196,20 @@ class LibraryScanService:
                             if entry.is_symlink():
                                 try:
                                     candidate = candidate.resolve()
-                                except OSError:
+                                except OSError as exc:
+                                    if traversal_errors_out is not None:
+                                        traversal_errors_out.append(f"{entry.path}: {exc}")
                                     continue
                             try:
                                 entry_stat = entry.stat(follow_symlinks=True)
-                            except OSError:
+                            except OSError as exc:
+                                if traversal_errors_out is not None:
+                                    traversal_errors_out.append(f"{entry.path}: {exc}")
                                 entry_stat = None
                             publish(candidate, entry_stat)
-                except OSError:
+                except OSError as exc:
+                    if traversal_errors_out is not None:
+                        traversal_errors_out.append(f"{directory}: {exc}")
                     continue
 
         if on_discovery is not None and discovered:
@@ -276,6 +291,7 @@ class LibraryScanService:
             ))
 
         discovered_inventory: dict[str, tuple[int, int]] = {}
+        traversal_errors: list[str] = []
         if known_files_only:
             # A human-requested failed-file retry already owns an exact path list.
             # Do not walk directories or hydrate the entire 96K inventory merely
@@ -321,6 +337,7 @@ class LibraryScanService:
                 include_generated=include_generated,
                 on_discovery=discovery_progress,
                 inventory_out=discovered_inventory,
+                traversal_errors_out=traversal_errors,
             )
         summary.discovered = len(paths)
         summary.active_paths = [str(path) for path in paths]
@@ -343,7 +360,8 @@ class LibraryScanService:
                 try:
                     stat = path.stat()
                     stat_meta = (int(stat.st_size), int(stat.st_mtime_ns))
-                except OSError:
+                except OSError as exc:
+                    traversal_errors.append(f"{path}: {exc}")
                     continue
             size_bytes, modified_ns = stat_meta
             resolved_path = str(path.resolve(strict=False))
@@ -620,7 +638,14 @@ class LibraryScanService:
                     affected_families.add(str(family_id))
                 if sha256:
                     affected_hashes.add(str(sha256))
-        if replace_existing and not summary.cancelled:
+        if replace_existing and not summary.cancelled and traversal_errors:
+            # Preserve ALL prior rows when any subtree cannot be inventoried:
+            # absence from an incomplete walk is not evidence of deletion.
+            self.on_progress(ScanProgress(
+                "reconciliation_skipped", len(paths), max(1, len(paths)),
+                message=f"Incomplete filesystem inventory ({len(traversal_errors)} errors); existing catalogue records preserved.",
+            ))
+        if replace_existing and not summary.cancelled and not traversal_errors:
             active = set(summary.active_paths)
             existing = set(inventory)
             removed = sorted(existing - active)

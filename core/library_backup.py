@@ -306,6 +306,19 @@ def _verify_open_archive(archive: zipfile.ZipFile) -> tuple[dict[str, object], t
     manifest, infos = _validated_archive_members(archive)
     info_by_name = {_safe_archive_name(info.filename).as_posix().casefold(): info for info in infos}
     actual_versions: dict[str, int] = {}
+    actual_members = set(info_by_name)
+    # A manifest-only ZIP (or a settings-only ZIP) is not a recoverable
+    # intelligence backup. Do not report success for a no-op restore.
+    sqlite_members = {f"library/{name}" for name in _SQLITE_FILES}
+    if not actual_members.intersection(sqlite_members):
+        raise RuntimeError("Library backup contains no Library SQLite databases.")
+    if manifest.get("format") == _FORMAT_V2:
+        included = manifest.get("included")
+        if not isinstance(included, list) or any(not isinstance(name, str) for name in included):
+            raise RuntimeError("Library backup manifest has no valid included-file inventory.")
+        declared_members = {name.casefold() for name in included}
+        if len(declared_members) != len(included) or declared_members != actual_members - {"manifest.json"}:
+            raise RuntimeError("Library backup manifest does not match archive contents.")
     for filename in _SQLITE_FILES:
         archive_name = f"library/{filename}"
         info = info_by_name.get(archive_name.casefold())
@@ -314,14 +327,26 @@ def _verify_open_archive(archive: zipfile.ZipFile) -> tuple[dict[str, object], t
         image = archive.read(info)
         actual_versions[archive_name] = _sqlite_integrity_image(image, label=archive_name)
 
-    declared = manifest.get("sqlite_user_versions") or {}
-    if isinstance(declared, dict):
-        for name, version in declared.items():
-            if name in actual_versions and int(version) != actual_versions[name]:
-                raise RuntimeError(
-                    f"Library backup schema metadata mismatch for {name}: "
-                    f"manifest {version}, database {actual_versions[name]}."
-                )
+    declared = manifest.get("sqlite_user_versions")
+    if manifest.get("format") == _FORMAT_V2:
+        if not isinstance(declared, dict) or set(declared) != set(actual_versions):
+            raise RuntimeError("Library backup SQLite schema inventory is incomplete or inconsistent.")
+    elif declared is None:
+        declared = {}
+    if not isinstance(declared, dict):
+        raise RuntimeError("Invalid SQLite schema inventory in Library backup manifest.")
+    for name, version in declared.items():
+        if name not in actual_versions:
+            raise RuntimeError(f"Library backup declares a missing or unknown SQLite member: {name}")
+        try:
+            matches = int(version) == actual_versions[name]
+        except (ValueError, TypeError, OverflowError) as exc:
+            raise RuntimeError(f"Invalid SQLite schema version for {name}") from exc
+        if not matches:
+            raise RuntimeError(
+                f"Library backup schema metadata mismatch for {name}: "
+                f"manifest {version}, database {actual_versions[name]}."
+            )
     return manifest, infos
 
 
@@ -355,8 +380,10 @@ def _replace_file_with_rollback(staged: Path, target: Path, rollback_root: Path,
         rollback = rollback_root / target.parent.name / target.name
         rollback.parent.mkdir(parents=True, exist_ok=True)
         os.replace(target, rollback)
-    os.replace(staged, target)
+    # Register the displacement BEFORE installing the replacement: if the
+    # second os.replace fails, exception handling must still restore target.
     changed.append((target, rollback))
+    os.replace(staged, target)
 
 
 def restore_library_intelligence_backup(paths: AppPaths, source: str | Path) -> LibraryRestoreResult:
@@ -384,7 +411,14 @@ def restore_library_intelligence_backup(paths: AppPaths, source: str | Path) -> 
                 # Stale WAL/SHM files from a previously stopped process must not
                 # be allowed to replay against a restored database image.
                 for suffix in ("-wal", "-shm"):
-                    Path(str(target) + suffix).unlink(missing_ok=True)
+                    sidecar = Path(str(target) + suffix)
+                    if sidecar.exists():
+                        # Preserve sidecars too: WAL may contain uncheckpointed
+                        # transactions in the original database state.
+                        displaced = rollback_root / "sidecars" / (filename + suffix)
+                        displaced.parent.mkdir(parents=True, exist_ok=True)
+                        os.replace(sidecar, displaced)
+                        changed.append((sidecar, displaced))
                 _replace_file_with_rollback(staged, target, rollback_root, changed)
                 restored.append(f"library/{filename}")
 
@@ -415,16 +449,38 @@ def restore_library_intelligence_backup(paths: AppPaths, source: str | Path) -> 
                     (Path("reference_imports") / item.relative_to(current_refs)).as_posix()
                     for item in current_refs.rglob("*") if item.is_file()
                 )
-        except (OSError, RuntimeError, json.JSONDecodeError, UnicodeError, ValueError):
-            # Restore in reverse order if any database/settings replacement fails.
+        except (OSError, RuntimeError, json.JSONDecodeError, UnicodeError, ValueError) as exc:
+            # Restore in reverse order. Never delete an original file if it was
+            # not actually displaced (for example when os.replace failed).
+            rollback_failures: list[str] = []
             for target, rollback in reversed(changed):
                 try:
-                    target.unlink(missing_ok=True)
-                    if rollback is not None and rollback.exists():
+                    if rollback is None:
+                        target.unlink(missing_ok=True)
+                    elif rollback.exists():
+                        target.unlink(missing_ok=True)
                         target.parent.mkdir(parents=True, exist_ok=True)
                         os.replace(rollback, target)
+                    else:
+                        # Original not moved (or already restored); do not erase.
+                        if not target.exists():
+                            rollback_failures.append(str(target))
                 except OSError:
-                    continue
+                    rollback_failures.append(str(target))
+            if rollback_failures:
+                # Retain a durable copy if rollback could not complete: a
+                # TemporaryDirectory would otherwise erase its only copy.
+                rescue = paths.library / "restore-recovery"
+                rescue.mkdir(parents=True, exist_ok=True)
+                for _target, displaced in changed:
+                    if displaced is not None and displaced.exists():
+                        recovery_target = rescue / displaced.relative_to(rollback_root)
+                        recovery_target.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.move(str(displaced), str(recovery_target))
+                raise RuntimeError(
+                    f"Restore failed and rollback is incomplete for {rollback_failures}. "
+                    f"Original files retained under {rescue}."
+                ) from exc
             raise
 
     return LibraryRestoreResult(str(backup), tuple(sorted(set(restored))), manifest)
